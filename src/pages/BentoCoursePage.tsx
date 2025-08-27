@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronLeft, ChevronRight, Home } from 'lucide-react';
+import { Download, FileText, ExternalLink, File, BookOpen as BookIcon } from 'lucide-react';
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx';
 import { saveAs } from 'file-saver';
 import { Header } from '../components/Header';
@@ -420,6 +421,109 @@ export const BentoCoursePage: React.FC = () => {
                       </button>
                     </div>
                   </div>
+
+                {/* Resources Section */}
+                {currentLessonData.resources && currentLessonData.resources.length > 0 && (
+                  <div className="mb-3 sm:mb-4 lg:mb-6 p-3 sm:p-4 bg-blue-50/50 rounded-xl border border-blue-100">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <h3 className="text-sm sm:text-base font-semibold text-gray-900">Lesson Resources</h3>
+                      <span className="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full font-medium">
+                        {currentLessonData.resources.length} files
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                      {currentLessonData.resources.map((resource) => {
+                        const getResourceIcon = (type: string) => {
+                          switch (type) {
+                            case 'pdf':
+                              return <FileText className="w-4 h-4 text-red-500" />;
+                            case 'link':
+                              return <ExternalLink className="w-4 h-4 text-blue-500" />;
+                            case 'code':
+                              return <File className="w-4 h-4 text-green-500" />;
+                            default:
+                              return <BookIcon className="w-4 h-4 text-gray-500" />;
+                          }
+                        };
+
+                        const getResourceColor = (type: string) => {
+                          switch (type) {
+                            case 'pdf':
+                              return 'bg-red-50 hover:bg-red-100 border-red-200 text-red-700';
+                            case 'link':
+                              return 'bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700';
+                            case 'code':
+                              return 'bg-green-50 hover:bg-green-100 border-green-200 text-green-700';
+                            default:
+                              return 'bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-700';
+                          }
+                        };
+
+                        return (
+                          <button
+                            key={resource.id}
+                            onClick={() => {
+                              if (resource.type === 'link') {
+                                window.open(resource.url, '_blank');
+                              } else {
+                                // For downloadable files, create a download link
+                                const link = document.createElement('a');
+                                link.href = resource.url;
+                                link.download = resource.title;
+                                link.target = '_blank';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                              }
+                            }}
+                            className={`flex items-center space-x-3 p-3 rounded-lg border transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] text-left ${getResourceColor(resource.type)}`}
+                          >
+                            <div className="flex-shrink-0">
+                              {getResourceIcon(resource.type)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm line-clamp-1">
+                                {resource.title}
+                              </div>
+                              <div className="flex items-center space-x-2 mt-1">
+                                <span className="text-xs opacity-75 capitalize">
+                                  {resource.type === 'link' ? 'External Link' : `${resource.type.toUpperCase()} File`}
+                                </span>
+                                {resource.type !== 'link' && (
+                                  <div className="flex items-center space-x-1">
+                                    <Download className="w-3 h-3" />
+                                    <span className="text-xs">Download</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex-shrink-0">
+                              {resource.type === 'link' ? (
+                                <ExternalLink className="w-4 h-4 opacity-50" />
+                              ) : (
+                                <Download className="w-4 h-4 opacity-50" />
+                              )}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Quick Download All Button */}
+                    {currentLessonData.resources.filter(r => r.type !== 'link').length > 1 && (
+                      <div className="mt-3 pt-3 border-t border-blue-200">
+                        <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors text-sm font-medium">
+                          <Download className="w-4 h-4" />
+                          <span>Download All Resources</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                   {/* Lesson Info */}
                   <div className="space-y-2 sm:space-y-3 lg:space-y-4">

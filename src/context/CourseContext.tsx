@@ -61,7 +61,27 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
             duration: '12:45',
             order: 1,
-            unitId: 'unit-1'
+            unitId: 'unit-1',
+            resources: [
+              {
+                id: 'resource-1-1',
+                title: 'React Fundamentals Cheat Sheet',
+                type: 'pdf',
+                url: 'https://example.com/react-cheat-sheet.pdf'
+              },
+              {
+                id: 'resource-1-2',
+                title: 'Official React Documentation',
+                type: 'link',
+                url: 'https://react.dev'
+              },
+              {
+                id: 'resource-1-3',
+                title: 'Starter Code Template',
+                type: 'code',
+                url: 'https://example.com/react-starter.zip'
+              }
+            ]
           },
           {
             id: 'lesson-1-2',
@@ -70,7 +90,21 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
             duration: '18:30',
             order: 2,
-            unitId: 'unit-1'
+            unitId: 'unit-1',
+            resources: [
+              {
+                id: 'resource-1-4',
+                title: 'Node.js Installation Guide',
+                type: 'pdf',
+                url: 'https://example.com/nodejs-guide.pdf'
+              },
+              {
+                id: 'resource-1-5',
+                title: 'VS Code Extensions List',
+                type: 'pdf',
+                url: 'https://example.com/vscode-extensions.pdf'
+              }
+            ]
           },
           {
             id: 'lesson-1-3',
@@ -79,7 +113,27 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
             duration: '15:20',
             order: 3,
-            unitId: 'unit-1'
+            unitId: 'unit-1',
+            resources: [
+              {
+                id: 'resource-1-6',
+                title: 'JSX Syntax Reference',
+                type: 'pdf',
+                url: 'https://example.com/jsx-reference.pdf'
+              },
+              {
+                id: 'resource-1-7',
+                title: 'JSX Playground',
+                type: 'link',
+                url: 'https://babeljs.io/repl'
+              },
+              {
+                id: 'resource-1-8',
+                title: 'JSX Practice Exercises',
+                type: 'code',
+                url: 'https://example.com/jsx-exercises.zip'
+              }
+            ]
           }
         ]
       },
@@ -96,7 +150,21 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
             duration: '22:15',
             order: 1,
-            unitId: 'unit-2'
+            unitId: 'unit-2',
+            resources: [
+              {
+                id: 'resource-2-1',
+                title: 'Component Best Practices',
+                type: 'pdf',
+                url: 'https://example.com/component-best-practices.pdf'
+              },
+              {
+                id: 'resource-2-2',
+                title: 'Component Examples Repository',
+                type: 'link',
+                url: 'https://github.com/example/react-components'
+              }
+            ]
           },
           {
             id: 'lesson-2-2',
@@ -105,7 +173,15 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
             duration: '19:45',
             order: 2,
-            unitId: 'unit-2'
+            unitId: 'unit-2',
+            resources: [
+              {
+                id: 'resource-2-3',
+                title: 'Props Validation Guide',
+                type: 'pdf',
+                url: 'https://example.com/props-validation.pdf'
+              }
+            ]
           }
         ]
       },
@@ -122,7 +198,27 @@ const mockCourses: Course[] = [
             videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
             duration: '25:30',
             order: 1,
-            unitId: 'unit-3'
+            unitId: 'unit-3',
+            resources: [
+              {
+                id: 'resource-3-1',
+                title: 'React Hooks Complete Guide',
+                type: 'pdf',
+                url: 'https://example.com/hooks-guide.pdf'
+              },
+              {
+                id: 'resource-3-2',
+                title: 'useState Examples',
+                type: 'code',
+                url: 'https://example.com/usestate-examples.zip'
+              },
+              {
+                id: 'resource-3-3',
+                title: 'React Hooks Documentation',
+                type: 'link',
+                url: 'https://react.dev/reference/react'
+              }
+            ]
           }
         ]
       }
